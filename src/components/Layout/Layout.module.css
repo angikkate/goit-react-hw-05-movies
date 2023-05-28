@@ -14,9 +14,13 @@
     padding: 15px;
 }
 
-.active {
+.navLink:active,
+.navLink:hover,
+.navLink:focus {
     color: rgb(255, 123, 0);
+    text-decoration: underline;
 }
+
 .navItem {
     margin-left: 10px;
 }
