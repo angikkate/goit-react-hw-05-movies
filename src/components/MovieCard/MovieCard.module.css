@@ -1,0 +1,76 @@
+.movieCardContainer {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+img {
+  height: 600px;
+  width: 400px;
+}
+
+.movieInfo {
+  padding-top: 20px;
+  max-width: 1100px;
+}
+
+.movieName {
+  margin-bottom: 20px;
+}
+
+.movieInfoText {
+  margin-bottom: 20px;
+}
+
+.movieInfoTextBold {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.moreInfoWrapper {
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.moreInfoHeader {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.list {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  font-size: 16px;
+  margin-right: 5px;
+  padding: 5px 15px;
+  border: 1px solid #0d57aa;
+  border-radius: 6px;
+  background-color: #b5d1f2;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  color: #0d57aa;
+
+  &:hover,
+  &:focus {
+    background-color: #0d57aa;
+    color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+}
