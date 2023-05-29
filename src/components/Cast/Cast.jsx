@@ -3,28 +3,38 @@ import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from '../../services/api';
 import css from './Cast.module.css';
 import { ThreeDots } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     const fetchCast = async () => {
       try {
         const { cast } = await fetchMovieCast(movieId);
-        setCast(cast);
-        setLoading(false);
+        if (cast.length === 0) {
+          toast.dismiss();
+          toast.error('No cast found');
+          setCast([]);
+          setLoading(false);
+        } else {
+          setCast(cast);
+          setLoading(false);
+        }
       } catch (error) {
+        toast.error(error.message);
         console.log(error);
+        setCast([]);
       }
     };
 
     fetchCast();
   }, [movieId]);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <ThreeDots
         height="80" 
@@ -44,18 +54,10 @@ const Cast = () => {
         <ul className={css.castList}>
         {cast.map(actor => (
           <li className={css.castListItem} key={actor.id}>
-            {actor.profile_path ? (
-              <img className={css.img}
-                src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-                alt={`${actor.name} profile`}
-              />
-            ) : (
-              <img className={css.img}
-                src={`https://via.placeholder.com/200x300?text=No+Image`}
-                alt={`${actor.name} profile`}
-              />
-            )}
-
+            <img className={css.img}
+              src={actor.profile_path ?`https://image.tmdb.org/t/p/w200${actor.profile_path}`: `https://via.placeholder.com/200x300?text=No+Image`} 
+              alt={`${actor.name} profile`}
+            />
             <p className={css.name}>{actor.name}</p>
             <p className={css.character}>Character: {actor.character}</p>
           </li>

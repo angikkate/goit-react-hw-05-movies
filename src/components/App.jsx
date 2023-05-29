@@ -2,8 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Layout from './Layout/Layout';
 
-const Layout = lazy(() => import('./Layout'));
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MoviesDetails'));

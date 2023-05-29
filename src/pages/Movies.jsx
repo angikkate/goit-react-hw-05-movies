@@ -11,12 +11,14 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const [isLoading, setLoading] = useState(false);
+  //const [error, setError] = useState(false);
 
   useEffect(() => {
     const query = searchParams.get('query') ?? '';
     if (!query) return;
     const getMovie = async () => {
       try {
+        //setError(false);
         setLoading(true);
         const { results } = await fetchMovieByName(query);
         if (results.length === 0) {
@@ -28,6 +30,7 @@ const Movies = () => {
           setLoading(false);
         }
       } catch (error) {
+        //setError(true);
         toast.error(error.message);
         setMovies([]);
       }
