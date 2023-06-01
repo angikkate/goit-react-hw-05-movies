@@ -1,6 +1,7 @@
 import { useEffect, useState, lazy } from 'react';
 import { fetchTrendMovies } from '../services/api';
 import { ThreeDots } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 
 const MovieList = lazy(() => import ('../components/MovieList'));
 
@@ -18,6 +19,7 @@ const Home = () => {
         setTrendingMovies(results);
       } catch (error) {
         setError(true);
+        toast.error('No movies found');
       } finally {
         setIsLoading(false);
       }
