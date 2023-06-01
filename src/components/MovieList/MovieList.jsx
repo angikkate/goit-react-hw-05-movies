@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import css from './MovieList.module.css';
 
-
-const MovieList = ({ trendingMovies }) => {
+const MovieList = ({ movies, title }) => {
+  //console.log(movies);
   return (
     <section>
-      <h1 style={{ margin: '10px' }}>Trending Today</h1>
+      <h1 style={{ margin: '10px' }}>{title}</h1>
       <ul className={css.listMovies} >
-        {trendingMovies.map(trendingMovie => (
-          <li className={css.itemMovies} key={trendingMovie.id}>
-            <Link className={css.linkMovies} to={`/movies/${trendingMovie.id}`}>
-              {trendingMovie.title}
+        {movies.map(movie => (
+          <li className={css.itemMovies} key={movie.id}>
+            <Link className={css.linkMovies} to={`/movies/${movie.id}`}>
+              {movie.title}
             </Link>
           </li>
         ))}
@@ -23,7 +23,8 @@ const MovieList = ({ trendingMovies }) => {
 export default MovieList;
 
 MovieList.propTypes = {
-  trendingMovies: PropTypes.arrayOf(
+  title: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
